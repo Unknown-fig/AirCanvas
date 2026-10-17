@@ -10,6 +10,21 @@ export type Stroke = {
   width: number;
 };
 
+export type Point3 = {
+  x: number;
+  y: number;
+  z: number;
+  time: number;
+};
+
+export type Stroke3D = {
+  points: Point3[];
+  color: string;
+  radius: number;
+};
+
+export type ViewMode = 'flat' | 'sculptor';
+
 export type Gesture = 'DRAW' | 'SELECT' | 'FIST' | 'HOVER';
 
 export type GestureDisplay =
@@ -17,7 +32,8 @@ export type GestureDisplay =
   | 'Hovering'
   | 'Selecting'
   | 'Clearing'
-  | 'No hand';
+  | 'No hand'
+  | 'Orbiting';
 
 export type NormalizedLandmark = {
   x: number;
@@ -36,5 +52,9 @@ export type VideoMapping = {
 export type CameraStatus = 'idle' | 'loading' | 'ready' | 'error';
 
 export function strokesToJSON(strokes: Stroke[]): string {
+  return JSON.stringify(strokes, null, 2);
+}
+
+export function strokes3DToJSON(strokes: Stroke3D[]): string {
   return JSON.stringify(strokes, null, 2);
 }
